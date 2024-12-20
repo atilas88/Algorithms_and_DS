@@ -10,5 +10,6 @@ $node_1->next = $node_2;
 $node_2->next = null;
 
 $list = new LinkedList($node_3);
-
+$list->insertNode(60,1);
+$list->deleteNode(0);
 $list->print();
