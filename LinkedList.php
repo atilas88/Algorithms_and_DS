@@ -20,11 +20,12 @@ class LinkedList
    }
 
     /**
+     * @param Node|null $list
      * @return void
      */
-   public function print(): void
+   public function print(Node $list = null): void
    {
-       $node = $this->head;
+       $node = $list ?? $this->head;
        while($node)
        {
            echo $node->data;
@@ -77,6 +78,45 @@ class LinkedList
            $prev = $prev->next;
        }
        $prev->next = $prev->next->next;
+   }
+
+    /**
+     * @return Node
+     */
+   public function reverseList():Node
+   {
+       $prev = null;
+       $current = $this->head;
+       
+       while ($current!=null)
+       {
+           $forward = $current->next;
+           $current->next = $prev;
+           $prev = $current;
+           $current = $forward;
+       }
+       return $prev;
+
+   }
+
+    /**
+     * @return Node
+     */
+   public function middleNode():Node
+   {
+       if($this->head->next == null)
+       {
+           return $this->head;
+       }
+       //Define fast and slow pointer
+       $fast = $this->head;
+       $slow = $this->head;
+       while ($fast!= null && $fast->next !=null)
+       {
+           $slow = $slow->next;
+           $fast = $fast->next->next;
+       }
+       return $slow;
    }
 
 }
