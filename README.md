@@ -1,1 +1,1 @@
-## Training in solve problems an data structures
+## Training in solve problems and data structures
