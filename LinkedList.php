@@ -81,12 +81,13 @@ class LinkedList
    }
 
     /**
+     * @param Node|null $list
      * @return Node
      */
-   public function reverseList():Node
+   public function reverseList(Node $list = null):Node
    {
        $prev = null;
-       $current = $this->head;
+       $current = $list ?? $this->head;
        
        while ($current!=null)
        {
@@ -100,23 +101,79 @@ class LinkedList
    }
 
     /**
+     * @param Node|null $list
      * @return Node
      */
-   public function middleNode():Node
+   public function middleNode(Node $list = null):Node
    {
-       if($this->head->next == null)
+       if($this->head->next === null)
        {
            return $this->head;
        }
        //Define fast and slow pointer
-       $fast = $this->head;
-       $slow = $this->head;
-       while ($fast!= null && $fast->next !=null)
+       $fast = $list ?? $this->head;
+       $slow = $list ??  $this->head;
+       while ($fast!== null && $fast->next !== null)
        {
            $slow = $slow->next;
            $fast = $fast->next->next;
        }
        return $slow;
    }
+
+    /**
+     * @return bool
+     */
+   public function hasCycle():bool
+   {
+       $fast = $this->head;
+       $slow = $this->head;
+
+       while($fast !== null && $fast->next !== null)
+       {
+           $slow = $slow->next;
+           $fast = $fast->next->next;
+
+           if($fast === $slow)
+           {
+               return true;
+           }
+       }
+       return false;
+   }
+
+    /**
+     * @return bool
+     */
+   public function isPalindrome():bool
+   {
+       $middle = $this->middleNode();
+       $slow = $this->reverseList($middle);
+
+       while ($slow !== null && ($this->head->data === $slow->data))
+       {
+           $slow = $slow->next;
+           $this->head = $this->head->next;
+       }
+       return $slow === null;
+   }
+
+    /**
+     * @param Node $listOne
+     * @param Node $listTwo
+     * @return Node
+     */
+   public function getIntersection(Node $listOne, Node $listTwo): Node
+   {
+       $one = $listOne;
+       $two = $listTwo;
+       while ($one !== $two)
+       {
+           $one = $one === null ? $listTwo : $one->next;
+           $two = $two === null ? $listOne : $two->next;
+       }
+       return $two;
+   }
+
 
 }

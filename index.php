@@ -1,19 +1,17 @@
 <?php
 include_once 'LinkedList.php';
 
-$node_1 = new Node(23);
-$node_2 = new Node(55);
-$node_3 = new Node(40);
+$node_1 = new Node(2);
+$node_2 = new Node(1);
+$node_3 = new Node(1);
 
 $node_3->next = $node_1;
 $node_1->next = $node_2;
 $node_2->next = null;
 
 $list = new LinkedList($node_3);
-$list->insertNode(60,1);
+$list->insertNode(2,1);
 
 $list->print();
-echo "</br>";
-$middle = $list->middleNode();
-$list->print($middle);
+
 
