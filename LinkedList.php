@@ -112,20 +112,21 @@ class LinkedList
    }
 
     /**
-     * @param Node $listOne
-     * @param Node $listTwo
-     * @return Node
+     * @param Node $headA
+     * @param Node $headB
+     * @return Node|null
      */
-   public function getIntersection(Node $listOne, Node $listTwo): Node
+   public function getIntersection(Node $headA, Node $headB): Node | null
    {
-       $one = $listOne;
-       $two = $listTwo;
+       $one = $headA;
+       $two = $headB;
+
        while ($one !== $two)
        {
-           $one = $one === null ? $listTwo : $one->next;
-           $two = $two === null ? $listOne : $two->next;
+           $one = $one === null ? $headB : $one->next;
+           $two = $two === null ? $headA : $two->next;
        }
-       return $two;
+       return $one;
    }
 
     /**
