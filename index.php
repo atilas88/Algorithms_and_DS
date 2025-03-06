@@ -77,3 +77,23 @@ $node_20->next = $node_21;
 $node_21->next = null;
 
 echo $listTest->getIntersection($node_11,$node_16);
+
+//83. Remove Duplicates from Sorted List
+echo "Remove Duplicates from Sorted List";
+echo "</br>";
+
+$node_22 = new Node(1);
+$node_23 = new Node(1);
+$node_24 = new Node(2);
+$node_25 = new Node(3);
+$node_26 = new Node(3);
+
+$node_22->next = $node_23;
+$node_23->next = $node_24;
+$node_24->next = $node_25;
+$node_25->next = $node_26;
+$node_26->next = null;
+
+echo $node_22;
+echo "</br>";
+echo $listTest->deleteDuplicates($node_22);

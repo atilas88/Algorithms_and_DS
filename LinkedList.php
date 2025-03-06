@@ -169,5 +169,25 @@ class LinkedList
        return $dummy->next;
    }
 
+    /**
+     * @param Node $head
+     * @return Node
+     */
+    function deleteDuplicates(Node $head): Node
+    {
+        $dummy = new Node();
+        $dummy->next = $head;
+        $current = $dummy;
+
+        while($current && $current->next)
+        {
+            if($current->val === $current->next->val){
+                $current->next = $current->next->next;
+            }
+            $current = $current->next;
+        }
+        return $dummy->next;
+    }
+
 
 }
