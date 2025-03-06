@@ -179,12 +179,13 @@ class LinkedList
         $dummy->next = $head;
         $current = $dummy;
 
-        while($current && $current->next)
+        while($current->next && $current->next->next)
         {
-            if($current->val === $current->next->val){
+            if($current->next->val === $current->next->next->val){
                 $current->next = $current->next->next;
+            }else{
+                $current = $current->next;
             }
-            $current = $current->next;
         }
         return $dummy->next;
     }
